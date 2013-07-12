@@ -16,4 +16,5 @@ group :development, :test do
     gem 'rb-inotify'
   end
 end
+
 gemspec
