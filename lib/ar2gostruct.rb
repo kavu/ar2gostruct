@@ -40,8 +40,8 @@ module Ar2gostruct
       private
         def load_application
           require "#{Dir.pwd}/config/environment"
-        ensure
           Rails.application.eager_load!
+        rescue
         end
 
         def convert_to_gostruct(klass)
@@ -53,7 +53,7 @@ module Ar2gostruct
 
         def get_schema_info(klass)
           info = "// Table name: #{klass.table_name}\n"
-          info << "type #{klass.table_name.camelize} struct {\n"
+          info << "type #{klass.name.camelize} struct {\n"
 
           max_size = klass.column_names.collect { |name| name.size }.max + 1
 
